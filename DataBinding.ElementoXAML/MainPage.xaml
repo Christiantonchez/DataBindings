@@ -4,48 +4,40 @@
              x:Class="DataBinding.ElementoXAML.MainPage">
 
     <VerticalStackLayout>
-        <Border
-            Stroke="Gray"
-            Margin="16, 4"
+        <Border 
+            Stroke="Gray" 
+            Margin="16" 
             Padding="16">
             <VerticalStackLayout>
-                <Label
-                    Text="Escriba un texto"
-
-
-                    >
-                </Label>
-
-                <Entry
-                    Background="AntiqueWhite"
-                    TextChanged="OnEntry_TextChanged"
-                    x:Name="TextEntry">
+                <Label 
+                    Text="Escribe un Texto">
                     
+                    
+                </Label>
+                <Entry 
+                    BackgroundColor="LightGray" 
+                    Text="" 
+                    
+                    
+                    x:Name="textEntry">
                     
                 </Entry>
             </VerticalStackLayout>
-
-        </Border>
-
-                <Label
-                    Text="Mostrar Texto"
-                    >
-                </Label>
-                    <Label
-                    Text="Aqui se muestra el texto"
-                    x:Name="TextLabel"
-                    >
-                </Label>
-
-
-
-
             
- 
-        
-     
-        
+        </Border>
+        <VerticalStackLayout Margin="16" Padding="16">
+            <Label Text="Aqui se ve lo que está escribiendo">
+                
+            </Label>
+            <Label Text="{Binding Source={x:Reference textEntry}, Path=Text }"  
+                   Padding="0.38" 
+                   HorizontalOptions="Center" 
+                   FontAttributes="Italic" >
+                
+            </Label>
+        </VerticalStackLayout>
         
     </VerticalStackLayout>
+
 
 </ContentPage>
