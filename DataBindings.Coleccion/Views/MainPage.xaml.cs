@@ -1,6 +1,7 @@
 
 using DataBindings.Coleccion.Models;
 using Microsoft.Maui.Platform;
+using System.Collections.ObjectModel;
 
 namespace DataBindings.Coleccion.Views;
 
@@ -8,14 +9,18 @@ public partial class MainPage : ContentPage
 {
 
 
-	private List<OrigenDelPaquete> _origenes;
+	private ObservableCollection<OrigenDelPaquete> _origenes;
+
+
+	
+	
 	public MainPage()
 	{
 		InitializeComponent();
-		_origenes = new List<OrigenDelPaquete>();
+	_origenes = new ObservableCollection<OrigenDelPaquete>();
 		CargarDatos();
-		OriginesListView.ItemsSource = _origenes;
-	}
+        OriginesListView.ItemsSource = _origenes;
+    }
 	private void CargarDatos()
 	{
 		_origenes.Add(new OrigenDelPaquete
@@ -60,16 +65,16 @@ public partial class MainPage : ContentPage
 
 		if (origen != null)
 		{
-			NombreEntry.Text = origen.Nombre;
+		NombreEntry.Text = origen.Nombre;
 
 			OrigenEntry.Text = origen.Origen;
-		}
+	}
 		else
-		{
-            NombreEntry.Text = string.Empty;
+	{
+           NombreEntry.Text = string.Empty;
 
-            OrigenEntry.Text = string.Empty;
-        }
+           OrigenEntry.Text = string.Empty;
+       }
 	}
 
 	private void OnRemoveButtonClicked(object sender, EventArgs e)
@@ -106,7 +111,7 @@ public partial class MainPage : ContentPage
 
     }
 
-    private void OnSelectedOriginesListViews(object sender, SelectedItemChangedEventArgs e)
+   private void OnSelectedOriginesListViews(object sender, SelectedItemChangedEventArgs e)
     {
 		ActualizaCamposDeEntrada();
     }
@@ -122,4 +127,9 @@ public partial class MainPage : ContentPage
             OriginesListView.ItemsSource= _origenes;
         }
 	}
+
+    private void OriginesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        ActualizaCamposDeEntrada();
+    }
 }

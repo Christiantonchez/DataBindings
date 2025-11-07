@@ -40,11 +40,15 @@
             </Button>
         </Grid>
 
-        <ListView
+        <CollectionView
             Grid.Row="1"
             BackgroundColor="Gray"
+            SelectionMode="Single"
+
             x:Name="OriginesListView"
-            ItemSelected="OnSelectedOriginesListViews"/>
+            
+            SelectionChanged="OriginesListView_SelectionChanged"/>
+
 
         <Grid
             RowSpacing="8"
