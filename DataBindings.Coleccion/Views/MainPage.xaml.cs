@@ -113,10 +113,9 @@ public partial class MainPage : ContentPage
 
     private void OnRemoveButtonClicked(object sender, EventArgs e)
     {
-        OrigenDelPaquete? seleccionado = (OrigenDelPaquete)OriginesListView.SelectedItem;
         if (_origenSeleccionado != null)
         {
-            var indice = Origenes.IndexOf(seleccionado);
+            var indice = Origenes.IndexOf(_origenSeleccionado);
             OrigenDelPaquete? nuevoSeleccionado;
             if (indice < Origenes.Count - 1)
             {
@@ -135,7 +134,7 @@ public partial class MainPage : ContentPage
                 }
 
             }
-            Origenes.Remove(seleccionado);
+            Origenes.Remove(_origenSeleccionado);
             _origenSeleccionado = nuevoSeleccionado;
         }
 

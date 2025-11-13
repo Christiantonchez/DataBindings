@@ -48,7 +48,6 @@
             BackgroundColor="Gray"
             SelectionMode="Single"
             EmptyView="No se ha agregado ningun origend de paquete"
-            x:Name="OriginesListView"
             SelectedItem="{Binding Path=OrigenSeleccionado}"
             ItemsSource="{Binding Path =Origenes}"
             SelectionChanged="OriginesListView_SelectionChanged">
