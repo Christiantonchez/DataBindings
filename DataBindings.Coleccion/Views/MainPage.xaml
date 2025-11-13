@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataBindings.Coleccion.Views"
+             xmlns:models="clr-namespace:DataBindings.Coleccion.Models"
+             x:DataType="local:MainPage"
              x:Class="DataBindings.Coleccion.Views.MainPage"
              Title="MainPage"
              BackgroundColor="Beige">
@@ -44,10 +47,45 @@
             Grid.Row="1"
             BackgroundColor="Gray"
             SelectionMode="Single"
-
+            EmptyView="No se ha agregado ningun origend de paquete"
             x:Name="OriginesListView"
-            
-            SelectionChanged="OriginesListView_SelectionChanged"/>
+            SelectedItem="{Binding Path=OrigenSeleccionado}"
+            ItemsSource="{Binding Path =Origenes}"
+            SelectionChanged="OriginesListView_SelectionChanged">
+                    <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="{x:Type models:OrigenDelPaquete}">
+                <Grid
+                    RowDefinitions="auto, *"
+                    ColumnDefinitions="auto, auto"
+                    >
+                    <CheckBox
+                        Grid.RowSpan="2"
+                        IsChecked="{Binding EstaHabilitado}"
+                        VerticalOptions="Center">
+
+
+                    </CheckBox>
+
+                        <Label
+                        Grid.Column="1"
+                        Text="{Binding Nombre}"/>
+
+
+
+                        <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding Origen}"/>
+                    
+
+
+                </Grid>
+
+            </DataTemplate>
+
+
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
 
         <Grid
@@ -64,7 +102,7 @@
             <Entry
                 Grid.Column="1"
                 BackgroundColor="White"
-                x:Name="NombreEntry"
+                Text="{Binding Path=NombreDelOrigen}"
                 />
 
 
@@ -77,10 +115,10 @@
 
 
             <Entry
+                Text="{Binding Path=RutaDelOrigen}"
                 Grid.Row="1"
                 Grid.Column="1"
-                BackgroundColor="White"
-                x:Name="OrigenEntry"/>
+                BackgroundColor="White"/>
 
             <Button
                Grid.Row="1"
